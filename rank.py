@@ -1,4 +1,5 @@
 import json
+from mpi4py import MPI
 
 filename = "data/smallTwitter.json"
 i = 0
