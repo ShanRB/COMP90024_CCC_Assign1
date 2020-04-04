@@ -104,7 +104,12 @@ comm_size = comm.Get_size()
 
 
 line_num = 0
-file0 = open(filename,'r')
+file0 = open(filename,'r',encoding='utf-8',errors='ignore')
+# lines = file0.read()
+
+
+content = file0.read()
+print(content)
 
 hashtags = {}
 language = {}
