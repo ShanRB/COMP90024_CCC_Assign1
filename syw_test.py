@@ -133,6 +133,7 @@ if comm_rank == 0:
 else:
     partitions = None
 
+print( comm_rank,len(partitions))
 local_hashtags_list = comm.scatter(partitions, root = 0) 
 print( comm_rank,len(local_hashtags_list))
 
@@ -140,7 +141,7 @@ local_hashtags_dict = {}
 
 for local_hashtags in local_hashtags_list:
     if len(local_hashtags_list) != 0:
-        for textdict in local_hashtags_list:
+        for textdict in local_hashtag_list:
             hashtag = textdict['text'].lower()
             if hashtag not in local_hashtags_dict:
                 local_hashtags_dict[hashtag] = 1
