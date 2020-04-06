@@ -101,6 +101,7 @@ print(filename)
 comm = MPI.COMM_WORLD
 comm_rank = comm.Get_rank()
 comm_size = comm.Get_size()
+print(comm_size)
 
 
 line_num = 0
@@ -141,7 +142,7 @@ local_hashtags_dict = {}
 
 for local_hashtags in local_hashtags_list:
     if len(local_hashtags_list) != 0:
-        for textdict in local_hashtag_list:
+        for textdict in local_hashtags:
             hashtag = textdict['text'].lower()
             if hashtag not in local_hashtags_dict:
                 local_hashtags_dict[hashtag] = 1
