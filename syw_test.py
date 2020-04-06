@@ -129,12 +129,12 @@ if comm_rank == 0:
     for key, value in enumerate(hashtags_list):
         partitions[key%comm_size].append(value)
 
-    print(partitions);
+   
 else:
     partitions = None
 
 local_hashtags_list = comm.scatter(partitions, root = 0) 
-print( comm_rank,local_hashtags_list)
+print( comm_rank,len(local_hashtags_list))
 
 local_hashtags_dict = {}
 
