@@ -110,6 +110,7 @@ file0 = open(filename,'r',encoding='utf-8')
 
 hashtags = {}
 language = {}
+count = 0
 
 if comm_rank == 0:
     hashtags_list = []
