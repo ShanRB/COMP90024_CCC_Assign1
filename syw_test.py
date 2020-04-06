@@ -134,11 +134,12 @@ if comm_rank == 0:
 else:
     partitions = None
 
-print( comm_rank,len(partitions))
+print('haha')
 local_hashtags_list = comm.scatter(partitions, root = 0) 
-print( comm_rank,len(local_hashtags_list))
+
 
 local_hashtags_dict = {}
+print('haha')
 
 for local_hashtags in local_hashtags_list:
     if len(local_hashtags_list) != 0:
@@ -149,6 +150,7 @@ for local_hashtags in local_hashtags_list:
             else:
                 local_hashtags_dict[hashtag] += 1
 
+print('haha')
 hashtags_dict = comm.gather(local_hashtags_dict, root=0)
 
 if comm_rank == 0:
