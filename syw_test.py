@@ -104,12 +104,9 @@ comm_size = comm.Get_size()
 
 
 line_num = 0
-file0 = open(filename,'r',encoding='utf-8',errors='ignore')
+file0 = open(filename,'r',encoding='utf-8')
 # lines = file0.read()
 
-
-content = file0.read()
-print(content)
 
 hashtags = {}
 language = {}
@@ -136,6 +133,7 @@ else:
     partitions = None
 
 local_hashtags_list = comm.scatter(partitions, root = 0) 
+print( comm_rank,local_hashtags_list)
 
 local_hashtags_dict = {}
 
