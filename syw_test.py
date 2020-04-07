@@ -101,7 +101,6 @@ print(filename)
 comm = MPI.COMM_WORLD
 comm_rank = comm.Get_rank()
 comm_size = comm.Get_size()
-print(comm_size)
 
 
 line_num = 0
@@ -134,12 +133,9 @@ if comm_rank == 0:
 else:
     partitions = None
 
-print('haha')
 local_hashtags_list = comm.scatter(partitions, root = 0) 
 
-
 local_hashtags_dict = {}
-print('haha')
 
 for local_hashtags in local_hashtags_list:
     if len(local_hashtags_list) != 0:
@@ -150,11 +146,13 @@ for local_hashtags in local_hashtags_list:
             else:
                 local_hashtags_dict[hashtag] += 1
 
-print('haha')
+                
+print(comm_rank, len(local_hashtags_dict))
 hashtags_dict = comm.gather(local_hashtags_dict, root=0)
+print(len(hashtags_dict))
 
-if comm_rank == 0:
-    print(hashtags_dict)
+# if comm_rank == 0:
+#     print(hashtags_dict)
 
 
 
