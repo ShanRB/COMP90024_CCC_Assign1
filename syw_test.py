@@ -162,7 +162,8 @@ if comm_rank == 0:
     # print out results
     print("Top hashtags:")
     for i in range(10):
-        print(f'{i+1:2d}. #{sorted_hashtags[i]}, {final_hashtags[sorted_hashtags[i]]}')
+        encoded = sorted_hashtags[i].encode("ANSI_X3.4-1968")
+        print(f'{i+1:2d}. #{encoded}, {final_hashtags[sorted_hashtags[i]]}')
     print("-" * 30)
 
     end_time = time.time()
