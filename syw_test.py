@@ -149,11 +149,24 @@ for local_hashtags in local_hashtags_list:
                 
 print(comm_rank, len(local_hashtags_dict))
 hashtags_dict = comm.gather(local_hashtags_dict, root=0)
-print(len(hashtags_dict))
 
 # if comm_rank == 0:
 #     print(hashtags_dict)
+if comm_rank == 0:
+    print("Master node process data")
+    final_hashtags = merge_dict(hashtags_dict)
+    
+    print("prepared to sort data")
+    sorted_hashtags = sorted(final_hashtags, key=final_hashtags.get, reverse=True)[0:10]
+    
+    # print out results
+    print("Top hashtags:")
+    for i in range(10):
+        print(f'{i+1:2d}. #{sorted_hashtags[i]}, {final_hashtags[sorted_hashtags[i]]}')
+    print("-" * 30)
 
+    end_time = time.time()
+    print(f'\nExecution time is {end_time-start_time:.5f} seconds')
 
 
 
