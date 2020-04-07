@@ -1,0 +1,34 @@
+ 
+Run syw_test.py with 1 node 8 cores
+bigTwitter.json
+1 24210
+bigTwitter.json
+3 24316
+bigTwitter.json
+4 24162
+bigTwitter.json
+5 24121
+bigTwitter.json
+6 24361
+bigTwitter.json
+2 24231
+bigTwitter.json
+7 24208
+bigTwitter.json
+0 24267
+Master node process data
+prepared to sort data
+Top hashtags:
+ 1. #auspol, 19878
+ 2. #coronavirus, 10110
+ 3. #มาพ่องเพิ่งอะไร, 7531
+ 4. #firefightaustralia, 6812
+ 5. #oldme, 6418
+ 6. #sydney, 6196
+ 7. #scottyfrommarketing, 5185
+ 8. #grammys, 5085
+ 9. #assange, 4689
+10. #sportsrorts, 4516
+------------------------------
+
+Execution time is 359.34644 seconds
