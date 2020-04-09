@@ -177,7 +177,7 @@ if comm_rank == 0:
 #         print(f'{i+1:2d}. #{sorted_hashtags[i]}, {final_hashtags[sorted_hashtags[i]]}')
     print("-" * 30)
     for i in range(10):
-        print(f'{i+1:2d}. #{parse_language_code(sorted_language[i])}, {final_language[sorted_language[i]]}')
+        print(f'{i+1:2d}. #{sorted_language[i]}, {final_language[sorted_language[i]]}')
         
     end_time = time.time()
     print(f'\nExecution time is {end_time-start_time:.5f} seconds')
