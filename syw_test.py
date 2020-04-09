@@ -132,7 +132,6 @@ if comm_rank == 0:
         hashtag_partitions[key%comm_size].append(value)
     for key, value in enumerate(language_code):
         language_partitions[key%comm_size].append(value)    
-    print(language_partitions)
 else:
     language_partitions = hashtag_partitions = None
 
@@ -153,7 +152,6 @@ local_language_dict = {}
 #                 local_hashtags_dict[hashtag] += 1
 
 for local_language in local_language_list:
-    print(local_language)
     if local_language not in local_language_dict:
         local_language_dict[local_language] = 1
     else:
