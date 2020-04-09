@@ -121,19 +121,23 @@ if comm_rank == 0:
             data = json.loads(line)
             #extract hashtag and language code
             hashtag_list = data['doc']['entities']['hashtags']
-            # language_code = data['doc']['metadata']['iso_language_code']
+            language_code = data['doc']['metadata']['iso_language_code']
             hashtags_list.append(hashtag_list)
     file0.close()
 
-    partitions = [[] for i in range(comm_size)]
+    language_partitions = hashtag_partitions = [[] for i in range(comm_size)]
+    
     for key, value in enumerate(hashtags_list):
-        partitions[key%comm_size].append(value)
+        hashtag_partitions[key%comm_size].append(value)
+    for key, value in enumerate(language_code):
+        language_partitions[key%comm_size].append(value)    
 
    
 else:
-    partitions = None
+    language_partitions = hashtag_partitions = None
 
 local_hashtags_list = comm.scatter(partitions, root = 0) 
+
 
 local_hashtags_dict = {}
 
