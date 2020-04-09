@@ -123,6 +123,7 @@ if comm_rank == 0:
             #extract hashtag and language code
             hashtag_list = data['doc']['entities']['hashtags']
             language_code.append(data['doc']['metadata']['iso_language_code'])
+            print(data['doc']['metadata']['iso_language_code'])
             hashtags_list.append(hashtag_list)
     file0.close()
 
@@ -131,7 +132,7 @@ if comm_rank == 0:
     for key, value in enumerate(hashtags_list):
         hashtag_partitions[key%comm_size].append(value)
     for key, value in enumerate(language_code):
-        print(value)
+#         print(value)
         language_partitions[key%comm_size].append(value)    
 
 else:
@@ -154,7 +155,7 @@ local_language_dict = {}
 #                 local_hashtags_dict[hashtag] += 1
 
 for local_language in local_language_list:
-    print(local_language)
+#     print(local_language)
     if local_language not in local_language_dict:
         local_language_dict[local_language] = 1
     else:
