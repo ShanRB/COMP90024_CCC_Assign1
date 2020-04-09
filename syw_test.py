@@ -127,11 +127,10 @@ if comm_rank == 0:
     file0.close()
 
     language_partitions = hashtag_partitions = [[] for i in range(comm_size)]
-    print(language_code)
+    
     for key, value in enumerate(hashtags_list):
         hashtag_partitions[key%comm_size].append(value)
     for key, value in enumerate(language_code):
-        print(key, value)
         language_partitions[key%comm_size].append(value)    
 
 else:
@@ -139,6 +138,8 @@ else:
 
 local_hashtags_list = comm.scatter(hashtag_partitions, root = 0) 
 local_language_list = comm.scatter(language_partitions, root = 0)
+
+print(local_language_list)
 
 local_hashtags_dict = {}
 local_language_dict = {}
