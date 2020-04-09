@@ -153,6 +153,7 @@ local_language_dict = {}
 #                 local_hashtags_dict[hashtag] += 1
 
 for local_language in local_language_list:
+    print(local_language)
     if local_language not in local_language_dict:
         local_language_dict[local_language] = 1
     else:
