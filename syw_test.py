@@ -143,8 +143,9 @@ local_hashtags_dict = {}
 local_language_dict = {}
 
 for local_hashtags in local_hashtags_list:
-    if len(local_hashtags_list) != 0:
+    if len(local_hashtags) != 0:
         for textdict in local_hashtags:
+            print(textdict)
             hashtag = textdict['text'].lower()
             if hashtag not in local_hashtags_dict:
                 local_hashtags_dict[hashtag] = 1
