@@ -173,8 +173,8 @@ if comm_rank == 0:
     sorted_language = sorted(final_language, key=final_language.get, reverse=True)[0:10]
     # print out results
     print("Top hashtags:")
-    for i in range(10):
-        print(f'{i+1:2d}. #{sorted_hashtags[i]}, {final_hashtags[sorted_hashtags[i]]}')
+#     for i in range(10):
+#         print(f'{i+1:2d}. #{sorted_hashtags[i]}, {final_hashtags[sorted_hashtags[i]]}')
     print("-" * 30)
     for i in range(10):
         print(f'{i+1:2d}. #{parse_language_code(sorted_language[i])}, {final_language[sorted_language[i]]}')
