@@ -142,15 +142,15 @@ local_language_list = comm.scatter(language_partitions, root = 0)
 local_hashtags_dict = {}
 local_language_dict = {}
 
-for local_hashtags in local_hashtags_list:
-    if len(local_hashtags) != 0:
-        for textdict in local_hashtags:
-            print(len(local_hashtags))
-            hashtag = textdict['text'].lower()
-            if hashtag not in local_hashtags_dict:
-                local_hashtags_dict[hashtag] = 1
-            else:
-                local_hashtags_dict[hashtag] += 1
+# for local_hashtags in local_hashtags_list:
+#     if len(local_hashtags) != 0:
+#         for textdict in local_hashtags:
+#             print(len(local_hashtags))
+#             hashtag = textdict['text'].lower()
+#             if hashtag not in local_hashtags_dict:
+#                 local_hashtags_dict[hashtag] = 1
+#             else:
+#                 local_hashtags_dict[hashtag] += 1
 
 for local_language in local_language_list:
     if local_language not in local_language_dict:
