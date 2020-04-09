@@ -131,6 +131,7 @@ if comm_rank == 0:
     for key, value in enumerate(hashtags_list):
         hashtag_partitions[key%comm_size].append(value)
     for key, value in enumerate(language_code):
+        print(value)
         language_partitions[key%comm_size].append(value)    
 
 else:
