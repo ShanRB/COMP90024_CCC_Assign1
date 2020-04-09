@@ -132,14 +132,12 @@ if comm_rank == 0:
     for key, value in enumerate(language_code):
         language_partitions[key%comm_size].append(value)    
 
-   
 else:
     language_partitions = hashtag_partitions = None
 
-local_hashtags_list = comm.scatter(partitions, root = 0) 
+local_hashtags_list = comm.scatter(hashtag_partitions, root = 0) 
+local_language_list = comm.scatter(language_partitions, root = 0)
 
-
-local_hashtags_dict = {}
 
 for local_hashtags in local_hashtags_list:
     if len(local_hashtags_list) != 0:
@@ -150,25 +148,33 @@ for local_hashtags in local_hashtags_list:
             else:
                 local_hashtags_dict[hashtag] += 1
 
-                
-print(comm_rank, len(local_hashtags_dict))
+for local_language in local_language_list:
+    if local_language not in local_language_dict:
+        local_language_dict[local_language] = 1
+    else:
+        local_language_dict[local_language] += 1
+        
+
 hashtags_dict = comm.gather(local_hashtags_dict, root=0)
+language_dict = comm.gather(local_language_dict, root=0)
 
 # if comm_rank == 0:
 #     print(hashtags_dict)
 if comm_rank == 0:
     print("Master node process data")
     final_hashtags = merge_dict(hashtags_dict)
-    
+    final_language = merge_dict(language_dict)
     print("prepared to sort data")
     sorted_hashtags = sorted(final_hashtags, key=final_hashtags.get, reverse=True)[0:10]
-    
+    sorted_language = sorted(final_language, key=final_language.get, reverse=True)[0:10]
     # print out results
     print("Top hashtags:")
     for i in range(10):
         print(f'{i+1:2d}. #{sorted_hashtags[i]}, {final_hashtags[sorted_hashtags[i]]}')
     print("-" * 30)
-
+    for i in range(10):
+        print(f'{i+1:2d}. #{parse_language_code(sorted_language[i])}, {final_language[sorted_language[i]]}')
+        
     end_time = time.time()
     print(f'\nExecution time is {end_time-start_time:.5f} seconds')
 
