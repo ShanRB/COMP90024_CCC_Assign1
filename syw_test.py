@@ -139,6 +139,8 @@ else:
 local_hashtags_list = comm.scatter(hashtag_partitions, root = 0) 
 local_language_list = comm.scatter(language_partitions, root = 0)
 
+local_hashtags_dict = {}
+local_language_dict = {}
 
 for local_hashtags in local_hashtags_list:
     if len(local_hashtags_list) != 0:
