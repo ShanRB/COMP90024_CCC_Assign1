@@ -139,8 +139,6 @@ else:
 local_hashtags_list = comm.scatter(hashtag_partitions, root = 0) 
 local_language_list = comm.scatter(language_partitions, root = 0)
 
-print(local_language_list)
-
 local_hashtags_dict = {}
 local_language_dict = {}
 
@@ -155,7 +153,7 @@ local_language_dict = {}
 #                 local_hashtags_dict[hashtag] += 1
 
 for local_language in local_language_list:
-#     print(local_language)
+    print(local_language)
     if local_language not in local_language_dict:
         local_language_dict[local_language] = 1
     else:
