@@ -114,6 +114,7 @@ count = 0
 
 if comm_rank == 0:
     hashtags_list = []
+    language_code = []
     for line in file0:
         count = count + 1
         if line.endswith(',\n'):
@@ -121,7 +122,7 @@ if comm_rank == 0:
             data = json.loads(line)
             #extract hashtag and language code
             hashtag_list = data['doc']['entities']['hashtags']
-            language_code = data['doc']['metadata']['iso_language_code']
+            language_code.append(data['doc']['metadata']['iso_language_code'])
             hashtags_list.append(hashtag_list)
     file0.close()
 
